@@ -9,6 +9,7 @@ app = Flask(__name__)
 # Load data
 movies_dict = pickle.load(open('movies_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
+
 with gzip.open('similarity.pkl.gz', 'rb') as f:
     similarity = pickle.load(f)
 
@@ -45,8 +46,7 @@ def index():
         recommended, posters = recommend(selected_movie)
 
     zipped = zip(recommended, posters)
-return render_template('index.html', movies=movies['title'].values, zipped=zipped, selected_movie=selected_movie)
-
+    return render_template('index.html', movies=movies['title'].values, zipped=zipped, selected_movie=selected_movie)
 
 if __name__ == '__main__':
     app.run(debug=True)
