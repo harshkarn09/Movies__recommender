@@ -56,7 +56,8 @@ def index():
         if selected_movie:
             recommended, posters = recommend(selected_movie)
 
-    zipped = zip(recommended, posters)
+    zipped = list(zip(recommended, posters))
+
     return render_template(
         'index.html',
         movies=movies['title'].values,
