@@ -1,18 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Movie Recommender System</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        .poster-row { display: flex; gap: 15px; margin-top: 20px; }
-        .poster { text-align: center; width: 18%; }
-        .poster img { width: 100%; border-radius: 8px; }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        select, button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        .poster-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .poster {
+            width: 180px;
+            text-align: center;
+        }
+
+        .poster img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .poster h4 {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
+
     <h1>Movie Recommender System</h1>
+
     <form method="POST">
-        <label for="movie">Select a Movie:</label>
+        <label for="movie"><strong>Select a Movie:</strong></label>
         <select name="movie" id="movie">
             {% for movie in movies %}
                 <option value="{{ movie }}" {% if selected_movie == movie %}selected{% endif %}>{{ movie }}</option>
@@ -21,16 +65,16 @@
         <button type="submit">Recommend</button>
     </form>
 
-    {% if recommended %}
+    {% if zipped|length > 0 %}
         <div class="poster-row">
-          {% for name, poster in zipped %}
-
+            {% for name, poster in zipped %}
                 <div class="poster">
-                    <h4>{{ name }}</h4>
                     <img src="{{ poster }}" alt="Poster for {{ name }}">
+                    <h4>{{ name }}</h4>
                 </div>
             {% endfor %}
         </div>
     {% endif %}
+
 </body>
 </html>
