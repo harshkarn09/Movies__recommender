@@ -2,13 +2,15 @@ from flask import Flask, render_template, request
 import pickle
 import pandas as pd
 import requests
+import gzip
 
 app = Flask(__name__)
 
 # Load data
 movies_dict = pickle.load(open('movies_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
-similarity = pickle.load(open('similarity.pkl.gz', 'rb'))
+with gzip.open('similarity.pkl.gz', 'rb') as f:
+    similarity = pickle.load(f)
 
 def fetch_poster(movie_id):
     response = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=a95299e81ac22292d76c6b3e83e2c5b0&language=en-US")
