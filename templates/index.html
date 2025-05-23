@@ -23,7 +23,8 @@
 
     {% if recommended %}
         <div class="poster-row">
-            {% for name, poster in zip(recommended, posters) %}
+          {% for name, poster in zipped %}
+
                 <div class="poster">
                     <h4>{{ name }}</h4>
                     <img src="{{ poster }}" alt="Poster for {{ name }}">
