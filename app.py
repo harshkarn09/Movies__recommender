@@ -44,7 +44,9 @@ def index():
         selected_movie = request.form['movie']
         recommended, posters = recommend(selected_movie)
 
-    return render_template('index.html', movies=movies['title'].values, recommended=recommended, posters=posters, selected_movie=selected_movie)
+    zipped = zip(recommended, posters)
+return render_template('index.html', movies=movies['title'].values, zipped=zipped, selected_movie=selected_movie)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
