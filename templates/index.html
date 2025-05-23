@@ -65,7 +65,8 @@
         <button type="submit">Recommend</button>
     </form>
 
-    {% if zipped|length > 0 %}
+{% if zipped %}
+
         <div class="poster-row">
             {% for name, poster in zipped %}
                 <div class="poster">
